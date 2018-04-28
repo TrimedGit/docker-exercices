@@ -14,7 +14,7 @@ Nous considérerons que les fichiers de log sont générés par un serveur web c
 
 ## Définition de l'application dans un fichier au format Compose
 
-Afin de définir notre stack ELK, créez un fichier docker-compose.yml avec le contenu suivant:
+Afin de définir notre stack ELK, créez un répertoire *elk* et, à l'intérieur de celui-ci, le fichier docker-compose.yml avec le contenu suivant:
 
 ```
 version: '3.3'
@@ -54,7 +54,7 @@ Le service Kibana est basé sur l'image officielle kibana:5.5.2. Le mapping de p
 
 ## Fichier de configuration de Logstash
 
-Afin de pouvoir indexer des fichiers de logs existant, nous allons configurer Logstash. Dans le même répertoire que le fichier docker-compose.yml, créez le fichier logstash.conf avec le contenu suivant
+Afin de pouvoir indexer des fichiers de logs existant, nous allons configurer Logstash. Dans le réperoire *elk* (ou se trouve le fichier docker-compose.yml), créez le fichier logstash.conf avec le contenu suivant
 
 ```
 input {
@@ -181,7 +181,7 @@ Nous obtenons un message d'erreur car pour le moment aucun fichier n'a été tra
 ## Utilisation d'un fichier de logs de test
 
 
-Dans le répertoire log local, créez un fichier nginx.log contenant simplement la ligne suivante, celle-ci correspond au traitement d'une requête GET appelant l'URL /api/object/5996fc0f4c06fb000f83b7 depuis l'adresse IP 46.218.112.178
+Dans le répertoire *elk*, créez le répertoire *log* et à l'intérieur de celui-ci, créez le fichier *nginx-simple.log* contenant simplement la ligne suivante (celle-ci correspond à la réception d'une requête GET appelant l'URL /api/object/5996fc0f4c06fb000f83b7 depuis l'adresse IP 46.218.112.178):
 
 ```
 46.218.112.178 - - [28/Sep/2017:15:40:04 +0000] "GET /api/object/5996fc0f4c06fb000f83b7 HTTP/1.1" 200 501 "https://mydomain.net/map" "Mozilla/5.0 (Windows NT 10.0; WOW64; rv:55.0) Gecko/20100101 Firefox/55.0" "-" 
@@ -257,7 +257,9 @@ L'intérêt de la stack ELK n'est bien sur pas d'indexer une entrée de logs mai
 
 Si l'on copie dans le répertoire log un fichier contenant de nombreux enregistrements (de nombreuses lignes) aux format apache / nginx, nous serons capable de faire des recherches, de construire des dashboard business et d'en retirer des statistiques intéressantes.
 
-L'exemple suivante montre l'indexation d'un fichier de log comportant plusieurs milliers d'enregistrement.
+Utilisez le fichier *nginx-full.log* et placez le dans le répertoir *log* que vous avez créez. Visualisez les entrées de logs qui sont indexées et manipulez les comme vous le souhaitez.
+
+L'exemple suivante montre l'indexation du contenu du fichier *nginx-full.log* comportant plusieurs milliers d'enregistrement.
 
 ![ELK](./images/elk4.png)
 
@@ -268,6 +270,7 @@ A partir de ces données, nous avons créé une visualisation permettant de list
 Nous pouvons par exemple voir le nombre de requêtes dont le code de retour est 101 et dont l'origine est Paris.
 
 ![ELK](./images/elk6.png)
+
 
 ## En résumé
 
