@@ -173,7 +173,7 @@ Une fois les images téléchargées (depuis le Docker Hub), le lancement de l'ap
 
 L'interface web de Kibana est alors accessible sur le port 5601 de la machine hôte.
 
-![ELK](./images/elk1.png)
+![ELK](../images/elk1.png)
 
 Nous obtenons un message d'erreur car pour le moment aucun fichier n'a été traité, il n'y en a aucun dans le répertoire /var/log du container Logstash car le répertoire log local est vide.
 
@@ -245,11 +245,11 @@ logstash_1       | }
 
 Rafraichissez l'interface de Kibana, nous devriez voir que le message d'erreur précédent n'apparait plus. Cela provient du fait que l'entrée présente dans notre fichier a été traitée.
 
-![ELK](./images/elk2.png)
+![ELK](../images/elk2.png)
 
 Cliquez sur Create afin de créer un pattern permettant d'identifier l'index que Elasticsearch a créé pour nous lors du traitement de notre unique entrée. Cliquez ensuite sur Discover dans le menu de droite. Assurez vous d'avoir une période de recherche assez large afin de couvrir la date de l'entrée que nous avons spécifiée, vous pouvez configurer cette période en haut à droite de l'interface.
 
-![ELK](./images/elk3.png)
+![ELK](../images/elk3.png)
 
 L'intérêt de la stack ELK n'est bien sur pas d'indexer une entrée de logs mais des centaines de milliers / millions.
 
@@ -261,15 +261,15 @@ Utilisez le fichier *nginx-full.log* et placez le dans le répertoir *log* que v
 
 L'exemple suivante montre l'indexation du contenu du fichier *nginx-full.log* comportant plusieurs milliers d'enregistrement.
 
-![ELK](./images/elk4.png)
+![ELK](../images/elk4.png)
 
 A partir de ces données, nous avons créé une visualisation permettant de lister les pays d'origine des requêtes reçues. Pour chaque pays, nous avons un découpage en ville et pour chaque ville un découpage sur le code retour de la requête (peut-être pas très utile sur le plan business, mais la représentation est intéressante).
 
-![ELK](./images/elk5.png)
+![ELK](../images/elk5.png)
 
 Nous pouvons par exemple voir le nombre de requêtes dont le code de retour est 101 et dont l'origine est Paris.
 
-![ELK](./images/elk6.png)
+![ELK](../images/elk6.png)
 
 
 ## En résumé
