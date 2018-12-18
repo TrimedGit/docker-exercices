@@ -9,15 +9,13 @@ Nous verrons également comment monter un répertoire de l’hôte dans un conta
 
 ## Prérequis
 
-Si vous utilisez Docker for Mac ou Docker for Windows, la plateforme Docker est installée dans une machine virtuelle tournant sur un hyperviseur léger (xhyve pour macOS, Hyper-V pour Windows). Pour effectuer ce lab il vous faudra utiliser la commande suivante pour accéder à un shell dans cette machine virtuelle.
+Si vous utilisez Docker for Mac ou Docker for Windows, la plateforme Docker est installée dans une machine virtuelle tournant sur un hyperviseur léger (xhyve pour macOS, Hyper-V pour Windows). Pour effectuer ce lab il vous faudra utiliser la commande suivante pour accéder à un shell dans cette machine virtuelle et pouvoir naviguer dans /var/lib/docker.
 
 ```
 $ docker run -it --privileged --pid=host debian nsenter -t 1 -m -u -n -i sh 
 ```
 
 Comme nous l'avons évoqué dans un lab précédent, cette commande permet de lancer un shell dans un container basé sur debian, et faire en sorte d'utiliser les namespaces de la machine hôte (la machine virtuelle) sur laquelle tourne le daemon Docker.
-
-Une fois que vous avez lancé ce container, vous pourrez alors utiliser les commande Docker comme vous les utilisiez depuis votre machine hôte (masOS ou Windows) mais vous pourrez en plus naviguer dans le filesystem où les images sont stockées.
 
 ## Persistance des données dans un container
 
